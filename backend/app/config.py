@@ -2,6 +2,7 @@
 Configuration settings for the Smart Attendance System backend
 """
 from pydantic_settings import BaseSettings
+from typing import List
 import os
 
 class Settings(BaseSettings):
@@ -11,31 +12,32 @@ class Settings(BaseSettings):
     API_DESCRIPTION: str = "AI-powered facial recognition attendance system"
     
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./attendance.db")
+    DATABASE_URL: str = "sqlite:///./attendance.db"
     
     # Security
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-12345")
+    SECRET_KEY: str = "your-secret-key-12345"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # CORS
-    CORS_ORIGINS: list = [
+    CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:8000",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:8000",
     ]
     CORS_CREDENTIALS: bool = True
-    CORS_METHODS: list = ["*"]
-    CORS_HEADERS: list = ["*"]
+    CORS_METHODS: List[str] = ["*"]
+    CORS_HEADERS: List[str] = ["*"]
     
     # Application
-    DEBUG: bool = os.getenv("DEBUG", "False").lower() == "true"
-    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
-    LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
+    DEBUG: bool = False
+    ENVIRONMENT: str = "development"
+    LOG_LEVEL: str = "INFO"
     
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "ignore"  # Ignore extra fields
 
 settings = Settings()
