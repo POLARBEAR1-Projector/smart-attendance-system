@@ -1,0 +1,5 @@
+fastapi
+mediapipe
+sqlalchemy
+opencv-python
+# Add other necessary packages here
