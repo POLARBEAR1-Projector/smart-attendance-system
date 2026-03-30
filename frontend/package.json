@@ -1,0 +1,1 @@
+{\n  \"dependencies\": {\n    \"react\": \"latest\",\n    \"@mui/material\": \"latest\",\n    \"axios\": \"latest\",\n    \"react-router-dom\": \"latest\"\n  }\n}
